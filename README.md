@@ -100,6 +100,7 @@ ESXi Host 1              ESXi Host 2
 |----|----|----|--------|
 | Win10-C1 | Windows 10 | HR/Computers | ✅ Online |
 | Win10-C2 | Windows 10 | Management/Computers | ✅ Online |
+| Win11-C3 | Windows 11 | Management/Computers | ✅ Online |
 | Ubuntu VM | Ubuntu 22.04 | IT/Computers | ✅ Online |
 
 ### Group Policy Objects
@@ -168,6 +169,7 @@ KingSecure-Homelab/
 | iDRAC | Express license limits dedicated NIC and virtual disk creation |
 | vCenter SSO | Uses `vsphere.local` — separate from AD domain |
 | EVC | Required for vMotion between hosts with different CPU generations |
+| Windows 11 TPM | T620 has no physical TPM 2.0, so vTPM is unavailable; registry bypass (`LabConfig` keys) required to install — lab use only |
 
 ---
 
