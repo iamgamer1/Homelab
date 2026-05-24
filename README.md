@@ -170,6 +170,8 @@ KingSecure-Homelab/
 | vCenter SSO | Uses `vsphere.local` — separate from AD domain |
 | EVC | Required for vMotion between hosts with different CPU generations |
 | Windows 11 TPM | T620 has no physical TPM 2.0, so vTPM is unavailable; registry bypass (`LabConfig` keys) required to install — lab use only |
+| Printer Deployment | "List in the directory" must be checked in the printer's Sharing tab or GPO deployment silently fails; Error 740 = driver install needs elevation |
+| RDP via GPO | Enabling RDP requires both the Allow Remote Connections policy and adding Domain Users to the Remote Desktop Users group (Restricted Groups); Error 0x3 = not in group, Error 0x9 = firewall blocking TCP 3389 |
 
 ---
 
