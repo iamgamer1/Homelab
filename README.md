@@ -31,8 +31,6 @@ This homelab simulates a real enterprise IT environment covering:
 |--------|-----|-----|---------|------|
 | Dell OptiPlex 7040 | Intel i5-6600 | 48GB | 500GB SSD | ESXi Host 1 (Primary VMs) |
 | Dell PowerEdge T620 | Intel Xeon E5-2660 | 64GB | 2.2TB RAID 5 SAS | ESXi Host 2 (vCenter + Storage) |
-| MSI H270-PLUS | Intel i7-7700 | 16GB | 1TB HDD | Offline — PSU issue pending |
-| Gigabyte Brix | Intel i3-8130 | 8GB | — | Available — bare metal Linux |
 
 ### Additional Hardware
 - **Intel I350-T2** dual-port NIC installed in OptiPlex for network segmentation
@@ -185,7 +183,6 @@ KingSecure-Homelab/
 
 ### Medium Term
 - [ ] MDT + SCCM 180-day trial for mass deployment practice
-- [ ] Fix Host 3 (MSI H270) PSU issue — add as third ESXi host
 - [ ] Configure VLANs with pfSense for department isolation
 
 ### Long Term
