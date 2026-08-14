@@ -101,6 +101,11 @@ ESXi Host 1              ESXi Host 2
 | Win11-C3 | Windows 11 | Management/Computers | ✅ Online |
 | Ubuntu VM | Ubuntu 22.04 | IT/Computers | ✅ Online |
 
+### Cloud-Managed Endpoints (Intune)
+| VM | OS | Management | Status |
+|----|----|-----------|--------|
+| Win11-C4 | Windows 11 | Intune-enrolled (not domain-joined) | ✅ Online — Wazuh agent deployed via Intune Win32 app |
+
 ### Group Policy Objects
 | GPO | Scope | Description |
 |-----|-------|-------------|
@@ -123,7 +128,7 @@ ESXi Host 1              ESXi Host 2
 ### Wazuh SIEM
 - **Version:** Latest stable
 - **Deployment:** All-in-one on Ubuntu 22.04 LTS
-- **Agents:** Windows endpoints (Win10-C1, Win10-C2, WinServer25-01)
+- **Agents:** Win10-C1, Win10-C2, Win11-C3, WinServer25-01 (GPO/manual install), Win11-C4 (Intune Win32 app — cloud-native, non-domain-joined)
 - **Note:** Ubuntu 24.04 incompatible due to Java/OpenSearch conflicts
 
 ---
@@ -137,7 +142,8 @@ KingSecure-Homelab/
 │   ├── setup-guide.md           # Step-by-step setup documentation
 │   ├── troubleshooting.md       # Common issues and fixes
 │   ├── vmotion-guide.md         # vMotion configuration guide
-│   └── ad-scenarios.md          # AD troubleshooting scenarios
+│   ├── ad-scenarios.md          # AD troubleshooting scenarios
+│   └── wazuh-intune-deployment.md # Wazuh agent deployment via Intune Win32 app
 ├── scripts/
 │   ├── wazuh-agent-install.ps1  # Wazuh agent deployment script
 │   ├── domain-join.ps1          # Domain join automation
@@ -170,6 +176,8 @@ KingSecure-Homelab/
 | Windows 11 TPM | T620 has no physical TPM 2.0, so vTPM is unavailable; registry bypass (`LabConfig` keys) required to install — lab use only |
 | Printer Deployment | "List in the directory" must be checked in the printer's Sharing tab or GPO deployment silently fails; Error 740 = driver install needs elevation |
 | RDP via GPO | Enabling RDP requires both the Allow Remote Connections policy and adding Domain Users to the Remote Desktop Users group (Restricted Groups); Error 0x3 = not in group, Error 0x9 = firewall blocking TCP 3389 |
+| Intune Win32 Apps | Handled by the separate Intune Management Extension (IME) agent, which has its own check-in cycle — a device "Sync now" does not force IME to re-evaluate new app assignments |
+| Intune vs Wazuh | "Installed" in Intune only confirms the software landed and the service started; the Wazuh dashboard must separately confirm the agent enrolled and is reporting as Active |
 
 ---
 
