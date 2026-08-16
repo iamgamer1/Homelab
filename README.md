@@ -145,7 +145,8 @@ KingSecure-Homelab/
 │   ├── vmotion-guide.md         # vMotion configuration guide
 │   ├── ad-scenarios.md          # AD troubleshooting scenarios
 │   ├── wazuh-intune-deployment.md # Wazuh agent deployment via Intune Win32 app
-│   └── wazuh-it-hygiene-troubleshooting.md # IT Hygiene indexer-connector config & TLS troubleshooting
+│   ├── wazuh-it-hygiene-troubleshooting.md # IT Hygiene indexer-connector config & TLS troubleshooting
+│   └── wazuh-upgrade-4.7.5-to-4.14.7.md # Wazuh manager/indexer upgrade steps
 ├── scripts/
 │   ├── wazuh-agent-install.ps1  # Wazuh agent deployment script
 │   ├── domain-join.ps1          # Domain join automation
