@@ -6,6 +6,12 @@
 
 ---
 
+## What Is IT Hygiene?
+
+IT Hygiene is basically an inventory of everything running on every machine you're monitoring — what software's installed, who has accounts, what services are running, what network ports are open, even what browser extensions people have added. Instead of having to log into each computer and check manually, Wazuh collects all of it automatically and puts it in one dashboard.
+
+---
+
 ## Layer 1 — Syscollector wasn't collecting the new inventory fields
 
 Cause: the agent's `ossec.conf` predated Wazuh's newer syscollector options (`<users>`, `<groups>`, `<services>`, `<browser_extensions>`). These fields didn't exist in older syscollector schemas, and upgrading the agent binary doesn't retroactively add new default config options to an existing config file.
