@@ -129,6 +129,7 @@ ESXi Host 1              ESXi Host 2
 - **Version:** Latest stable
 - **Deployment:** All-in-one on Ubuntu 22.04 LTS
 - **Agents:** Win10-C1, Win10-C2, Win11-C3, WinServer25-01 (GPO/manual install), Win11-C4 (Intune Win32 app — cloud-native, non-domain-joined)
+- **IT Hygiene:** Enabled (users/groups/services/browser-extensions inventory) — see [wazuh-it-hygiene-troubleshooting.md](docs/wazuh-it-hygiene-troubleshooting.md)
 - **Note:** Ubuntu 24.04 incompatible due to Java/OpenSearch conflicts
 
 ---
@@ -143,7 +144,8 @@ KingSecure-Homelab/
 │   ├── troubleshooting.md       # Common issues and fixes
 │   ├── vmotion-guide.md         # vMotion configuration guide
 │   ├── ad-scenarios.md          # AD troubleshooting scenarios
-│   └── wazuh-intune-deployment.md # Wazuh agent deployment via Intune Win32 app
+│   ├── wazuh-intune-deployment.md # Wazuh agent deployment via Intune Win32 app
+│   └── wazuh-it-hygiene-troubleshooting.md # IT Hygiene indexer-connector config & TLS troubleshooting
 ├── scripts/
 │   ├── wazuh-agent-install.ps1  # Wazuh agent deployment script
 │   ├── domain-join.ps1          # Domain join automation
@@ -178,6 +180,10 @@ KingSecure-Homelab/
 | RDP via GPO | Enabling RDP requires both the Allow Remote Connections policy and adding Domain Users to the Remote Desktop Users group (Restricted Groups); Error 0x3 = not in group, Error 0x9 = firewall blocking TCP 3389 |
 | Intune Win32 Apps | Handled by the separate Intune Management Extension (IME) agent, which has its own check-in cycle — a device "Sync now" does not force IME to re-evaluate new app assignments |
 | Intune vs Wazuh | "Installed" in Intune only confirms the software landed and the service started; the Wazuh dashboard must separately confirm the agent enrolled and is reporting as Active |
+| Wazuh Indexer Connector | Installer default `<host>0.0.0.0:9200</host>` is a bind address, not a valid connect-out target — must be replaced (e.g. `127.0.0.1`) post-install |
+| Wazuh TLS Certs | Three different cert-naming conventions exist in one install (`filebeat.*`, `wazuh-server.*`, `wazuh-indexer.*`) — the indexer-connector needs the indexer's own cert, not the manager's |
+| TLS Hostname Matching | `localhost` and `127.0.0.1` are not interchangeable for TLS — must match exactly what's in the cert's Subject Alternative Name |
+| Wazuh Indexer Credentials | Indexer username/password live in the manager's encrypted keystore (`wazuh-keystore`), never in the `<indexer>` XML block |
 
 ---
 
